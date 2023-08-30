@@ -5,6 +5,8 @@
 
 // MVP
 
+// Start with just 1 player!!!
+// leaderboards are part of the mvp
 
 // 1. Initialize Firebase
 //    - Import and initialize the Firebase SDK with your project's configuration.
@@ -32,7 +34,7 @@
 //      - On error:
 //        - Set error state with an error message  
 
-// 5. Define saveGame Function
+// 5. Define saveGame Function (the complexity of this will vary depending on mvp or stretch goal)
 //    - Define a function named saveGame to save the current game to Firebase
 //    - Inside the function:
 //      - Create a reference to the Firebase database collection for saved games
@@ -67,6 +69,9 @@
 
 // Stretch goals
 
+// Potentially more players - aim for 2, but if it can be a component then its infinitely scaleable in theory!
+
+// total game history instead of just leaderboards?
 
 // 10. Use Firebase Authentication (Optional)
 //    - Implement user authentication with Firebase Authentication if needed
