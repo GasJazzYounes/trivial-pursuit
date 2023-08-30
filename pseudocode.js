@@ -1,30 +1,36 @@
+ // not so truvial pursuit
+
+// an application (using the open trivia api and firebase) that lets us generate customizable trivia games for parties, with the ability to save these games for play at a future date 
+
+
+// MVP
+
+
 // 1. Initialize Firebase
 //    - Import and initialize the Firebase SDK with your project's configuration.
 
 // 2. Create State Variables
-//    - Create state variables for:
+//    - Create state variables*, such as: 
 //      - questions (array to hold fetched questions)
 //      - selectedCategory (string to hold selected category ID)
 //      - numOfQuestions (number to hold selected number of questions)
 //      - loading (boolean for API loading state)
 //      - error (string for error handling)
 
+//* example variables, may change in development process
+
 // 3. Fetch Categories from Open Trivia Database API
 //    - Use an effect to fetch categories on component mount
 //    - Store categories in a state variable
 
-// 4. Define fetchQuestions Function
-//    - Define a function named fetchQuestions to fetch questions from the API
-//    - Inside the function:
-//      - Set loading to true
+// 4. Define a function ton fetch questions from the API
+//   - Inside the function:
 //      - Set error to an empty string
-//      - Make an API request to the Open Trivia Database API using selectedCategory and numOfQuestions
+//      - Make an API request to the Open Trivia Database API using state variables
 //      - On success:
 //        - Set questions state with fetched questions
-//        - Set loading to false
 //      - On error:
-//        - Set error state with an error message
-//        - Set loading to false
+//        - Set error state with an error message  
 
 // 5. Define saveGame Function
 //    - Define a function named saveGame to save the current game to Firebase
@@ -39,7 +45,6 @@
 //        - A select element with options for categories (map over categories state)
 //        - An input element for selecting the number of questions (controlled by numOfQuestions state)
 //        - A button to trigger the fetchQuestions function
-//      - Use conditional rendering to display loading and error messages
 //      - If questions array has elements:
 //        - Render the fetched questions with options for a trivia game
 //        - Render a button to trigger the saveGame function
@@ -57,9 +62,20 @@
 // 8. Export the App Component
 //    - Export the App component as the default export
 
-// 9. Use Firebase Authentication (Optional)
+// 9. Styling and stuff 
+
+
+// Stretch goals
+
+
+// 10. Use Firebase Authentication (Optional)
 //    - Implement user authentication with Firebase Authentication if needed
 //    - Allow users to sign in to save and view their games
 
-// 10. Style Your App (Optional)
-//     - Apply CSS or use a styling library to make your app visually appealing
+// 11. Add loading animations
+
+// 12. Enhanced UI animations
+
+// 13. Users can set the difficulty
+
+// 14. Users can mix question types (MC and True/False)
