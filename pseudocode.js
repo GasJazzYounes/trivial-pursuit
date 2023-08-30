@@ -1,4 +1,4 @@
- // not so truvial pursuit
+ // not so trivial pursuit
 
 // an application (using the open trivia api and firebase) that lets us generate customizable trivia games for parties, with the ability to save these games for play at a future date 
 
