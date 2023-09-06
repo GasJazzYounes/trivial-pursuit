@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import CategoryDropdown from './components/CategoryDropdown';
-import QuestionDisplay from './components/QuestionDisplay';
-import LoadingIndicator from './components/LoadingIndicator';
-import ErrorMessage from './components/ErrorMessage';
-import GameResult from './components/GameResult';
-import SaveGameButton from './components/SaveGameButton';
+import React, { useState, useEffect } from "react";
+import CategoryDropdown from "./components/CategoryDropdown";
+import QuestionDisplay from "./components/QuestionDisplay";
+import LoadingIndicator from "./components/LoadingIndicator";
+import ErrorMessage from "./components/ErrorMessage";
+import GameResult from "./components/GameResult";
+import SaveGameButton from "./components/SaveGameButton";
 
 function App() {
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [numOfQuestions, setNumOfQuestions] = useState(10);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     // Fetch categories from the API on component mount
-    fetch('https://opentdb.com/api_category.php')
-      .then(response => response.json())
-      .then(data => setCategories(data.trivia_categories))
-      .catch(err => console.error(err));
+    fetch("https://opentdb.com/api_category.php")
+      .then((response) => response.json())
+      .then((data) => setCategories(data.trivia_categories))
+      .catch((err) => console.error(err));
   }, []);
 
   const fetchQuestions = async () => {
-    setError('');
+    setError("");
     setLoading(true);
 
     const apiUrl = `https://opentdb.com/api.php?amount=${numOfQuestions}&category=${selectedCategory}`;
@@ -35,7 +35,7 @@ function App() {
       setQuestions(data.results);
       setCurrentQuestionIndex(0); // Reset to the first question
     } catch (err) {
-      setError('Error fetching questions');
+      setError("Error fetching questions");
     } finally {
       setLoading(false);
     }
@@ -59,14 +59,20 @@ function App() {
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
       />
-      <input type="number" value={numOfQuestions} onChange={(e) => setNumOfQuestions(e.target.value)} />
+      <select
+        value={numOfQuestions}
+        onChange={(e) => setNumOfQuestions(e.target.value)}
+      >
+        <option value="5">5 Questions</option>
+        <option value="10">10 Questions</option>
+        <option value="15">15 Questions</option>
+        <option value="20">20 Questions</option>
+      </select>
       <button onClick={fetchQuestions}>Generate Questions</button>
-
-   {/* instead of number, select options 5, 10, 15, 20 etc ? */}
 
       {loading && <LoadingIndicator />}
       {error && <ErrorMessage message={error} />}
-      
+
       {questions.length > 0 && currentQuestionIndex < questions.length && (
         <QuestionDisplay
           question={questions[currentQuestionIndex]}
@@ -82,10 +88,7 @@ function App() {
       )}
 
       {currentQuestionIndex >= questions.length && (
-        <SaveGameButton
-          userAnswers={userAnswers}
-          questions={questions}
-        />
+        <SaveGameButton userAnswers={userAnswers} questions={questions} />
       )}
     </div>
   );
