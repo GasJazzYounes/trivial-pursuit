@@ -14,6 +14,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #fff;
+    color: #577f90;
   }
   
   /* play button styles */
@@ -24,6 +25,7 @@
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    margin: 10px;
     transition: background-color 0.3s ease; 
   }
   
