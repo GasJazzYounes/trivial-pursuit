@@ -6,6 +6,8 @@ import LoadingIndicator from "./components/LoadingIndicator";
 import ErrorMessage from "./components/ErrorMessage";
 import GameResult from "./components/GameResult";
 import SaveGameButton from "./components/SaveGameButton";
+import Navbar from './components/Navbar/Navbar'
+import Homepage from './components/Homepage/Homepage';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -54,6 +56,8 @@ function App() {
 
   return (
     <div>
+      <Navbar /> 
+      <Homepage />
       <h1>Trivia Game App</h1>
       <CategoryDropdown
         categories={categories}

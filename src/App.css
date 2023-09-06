@@ -1,23 +1,28 @@
 /* import from google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Montserrat&display=swap");
 
 /* typography styles */
 /* ask joe about this specific font not having a bold variant */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Caveat Brush', cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Caveat Brush", cursive;
   font-weight: bold;
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: normal;
 }
 
 /* colour scheme */
 :root {
-  --primary-color: #577F90;
-  --secondary-color: #86C2AE;
-  --accent-color: #F0917A;
+  --primary-color: #577f90;
+  --secondary-color: #86c2ae;
+  --accent-color: #f0917a;
 }
 
 /* center content */
