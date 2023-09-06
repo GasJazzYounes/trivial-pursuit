@@ -62,6 +62,8 @@ function App() {
       <input type="number" value={numOfQuestions} onChange={(e) => setNumOfQuestions(e.target.value)} />
       <button onClick={fetchQuestions}>Generate Questions</button>
 
+   {/* instead of number, select options 5, 10, 15, 20 etc ? */}
+
       {loading && <LoadingIndicator />}
       {error && <ErrorMessage message={error} />}
       
