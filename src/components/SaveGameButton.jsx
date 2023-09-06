@@ -1,22 +1,19 @@
 import React from 'react';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 
-const db = firebase.firestore();
-
-function SaveGameButton({ userAnswers, questions, onSaveGame }) {
+function SaveGameButton({ onSaveGame }) {
   const saveGame = () => {
-    // Save the game to Firebase
-    db.collection('savedGames').add({
-      questions,
-      userAnswers,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(() => {
-      console.log('Game saved successfully');
-      onSaveGame(); // Call the parent component's onSaveGame function
-    })
-    .catch(err => console.error('Error saving game:', err));
+    // Add the logic to save the game here (firebase integration pending)
+
+    // Example logic (you can customize this):
+    // const gameData = {
+    //   questions,
+    //   userAnswers,
+    //   timestamp: new Date().toISOString(),
+    // };
+    // YourCustomSaveFunction(gameData);
+
+    // Notify the parent component that the game is saved
+    onSaveGame();
   };
 
   return (

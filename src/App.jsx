@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 import CategoryDropdown from './components/CategoryDropdown';
 import QuestionDisplay from './components/QuestionDisplay';
 import LoadingIndicator from './components/LoadingIndicator';
 import ErrorMessage from './components/ErrorMessage';
 import GameResult from './components/GameResult';
 import SaveGameButton from './components/SaveGameButton';
-
-const firebaseConfig = {
-  // Your Firebase config here
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -59,17 +51,6 @@ function App() {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
-  const saveGame = () => {
-    // Save the game to Firebase (implementation)
-
-    // db.collection('savedGames').add({
-    //   questions,
-    //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    // })
-    // .then(() => console.log('Game saved successfully'))
-    // .catch(err => console.error('Error saving game:', err));
-  };
-
   return (
     <div>
       <h1>Trivia Game App</h1>
@@ -102,7 +83,6 @@ function App() {
         <SaveGameButton
           userAnswers={userAnswers}
           questions={questions}
-          onSaveGame={saveGame}
         />
       )}
     </div>
