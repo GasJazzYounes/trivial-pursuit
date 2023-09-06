@@ -1,20 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Homepage.module.css";
 import Trivia from '../Trivia/Trivia'; 
 
 function Homepage() {
+  const [showTrivia, setShowTrivia] = useState(false); // State to control whether to show Trivia
+  const [playerName, setPlayerName] = useState(""); // State to store the player's name
+
+  const handlePlayClick = () => {
+    setShowTrivia(true); // Show Trivia when the "Play" button is clicked
+  };
+
+  const handleNameChange = (event) => {
+    setPlayerName(event.target.value); // Update the player's name as the user types
+  };
+
   return (
     <div className={styles.homepage}>
-      <h2 className={styles["player-name"]}>Player's Name</h2>
-      <div className={styles["category-options"]}>
-        {/* Include the category dropdown/select and number of questions */}
-        {/* Include the "Play" button */}
-        <button className={styles["play-button"]}>Play</button>
-      </div>
-      <Trivia /> {/* Render the Trivia component */}
+      {!showTrivia && ( // Only show the input field if Trivia is not shown
+        <div>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={playerName}
+            onChange={handleNameChange}
+            className={styles["player-name-input"]}
+          />
+          <button onClick={handlePlayClick}>Play</button>
+        </div>
+      )}
+      {showTrivia && (
+        <div className={styles["good-luck-message"]}>
+          Good luck, {playerName}! {/* Insert playerName here */}
+        </div>
+      )}
+      {showTrivia && <Trivia playerName={playerName} />} {/* Pass playerName to Trivia */}
     </div>
   );
 }
 
 export default Homepage;
+
+
+
+
 
