@@ -1,3 +1,4 @@
+import './app.css';
 import React, { useState, useEffect } from "react";
 import CategoryDropdown from "./components/CategoryDropdown";
 import QuestionDisplay from "./components/QuestionDisplay";
