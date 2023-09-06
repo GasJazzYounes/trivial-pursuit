@@ -1,13 +1,16 @@
 import './app.css';
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CategoryDropdown from "./components/CategoryDropdown";
 import QuestionDisplay from "./components/QuestionDisplay";
 import LoadingIndicator from "./components/LoadingIndicator";
 import ErrorMessage from "./components/ErrorMessage";
 import GameResult from "./components/GameResult";
 import SaveGameButton from "./components/SaveGameButton";
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './components/Navbar/Navbar';
 import Homepage from './components/Homepage/Homepage';
+import Instructions from './components/Instructions/Instructions'; 
+import Leaderboard from './components/Leaderboard/Leaderboard'; 
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -55,47 +58,53 @@ function App() {
   };
 
   return (
-    <div>
-      <Navbar /> 
-      <Homepage />
-      <h1>Trivia Game App</h1>
-      <CategoryDropdown
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-      />
-      <select
-        value={numOfQuestions}
-        onChange={(e) => setNumOfQuestions(e.target.value)}
-      >
-        <option value="5">5 Questions</option>
-        <option value="10">10 Questions</option>
-        <option value="15">15 Questions</option>
-        <option value="20">20 Questions</option>
-      </select>
-      <button onClick={fetchQuestions}>Generate Questions</button>
-
-      {loading && <LoadingIndicator />}
-      {error && <ErrorMessage message={error} />}
-
-      {questions.length > 0 && currentQuestionIndex < questions.length && (
-        <QuestionDisplay
-          question={questions[currentQuestionIndex]}
-          currentQuestionIndex={currentQuestionIndex}
-          userAnswers={userAnswers}
-          onAnswerSelect={handleAnswerSelect}
-          onNextQuestion={handleNextQuestion}
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/instructions" element={<Instructions />} /> {/* Instructions route */}
+          <Route path="/leaderboard" element={<Leaderboard />} /> {/* Leaderboard route */}
+        </Routes>
+        <h1>Trivia Game App</h1>
+        <CategoryDropdown
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
         />
-      )}
+        <select
+          value={numOfQuestions}
+          onChange={(e) => setNumOfQuestions(e.target.value)}
+        >
+          <option value="5">5 Questions</option>
+          <option value="10">10 Questions</option>
+          <option value="15">15 Questions</option>
+          <option value="20">20 Questions</option>
+        </select>
+        <button onClick={fetchQuestions}>Generate Questions</button>
 
-      {currentQuestionIndex >= questions.length && (
-        <GameResult userAnswers={userAnswers} questions={questions} />
-      )}
+        {loading && <LoadingIndicator />}
+        {error && <ErrorMessage message={error} />}
 
-      {currentQuestionIndex >= questions.length && (
-        <SaveGameButton userAnswers={userAnswers} questions={questions} />
-      )}
-    </div>
+        {questions.length > 0 && currentQuestionIndex < questions.length && (
+          <QuestionDisplay
+            question={questions[currentQuestionIndex]}
+            currentQuestionIndex={currentQuestionIndex}
+            userAnswers={userAnswers}
+            onAnswerSelect={handleAnswerSelect}
+            onNextQuestion={handleNextQuestion}
+          />
+        )}
+
+        {currentQuestionIndex >= questions.length && (
+          <GameResult userAnswers={userAnswers} questions={questions} />
+        )}
+
+        {currentQuestionIndex >= questions.length && (
+          <SaveGameButton userAnswers={userAnswers} questions={questions} />
+        )}
+      </div>
+    </Router>
   );
 }
 

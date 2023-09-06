@@ -1,18 +1,20 @@
 import React from 'react';
-import styles from "./Navbar.module.css";
+import { Link } from 'react-router-dom';
+import styles from './Navbar.module.css';
 
 function Navbar() {
   return (
     <div className={styles.navbar}>
-      <img src="logo.png" alt="Logo" className={styles.logo} />
+      <Link to="/" className={styles.link}>
+        <img src="logo.png" alt="Logo" className={styles.logo} />
+      </Link>
       <ul className={styles['nav-links']}>
-        <li>Home</li>
-        <li>Instructions</li>
-        <li>Leaderboard</li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/instructions">Instructions</Link></li>
+        <li><Link to="/leaderboard">Leaderboard</Link></li>
       </ul>
     </div>
   );
 }
 
 export default Navbar;
-
