@@ -1,7 +1,20 @@
 import React from 'react';
+import { getDatabase, ref, push } from "firebase/database";
+import app from '../../Firebase';
 
-function SaveGameButton({ onSaveGame }) {
+function SaveGameButton({ playerName, userAnswers, questions }) {
   const saveGame = () => {
+    const database = getDatabase(app);
+    const dbRef = ref(database);
+    const score = userAnswers.filter((answer, index) => answer === questions[index].correct_answer).length;
+
+    const player = {
+      playerName: playerName,
+      playerScore: `${score}/${questions.length}`
+    }
+
+    push(dbRef, player);
+
     // Add the logic to save the game here (firebase integration pending)
 
     // Example logic (you can customize this):
@@ -12,8 +25,6 @@ function SaveGameButton({ onSaveGame }) {
     // };
     // YourCustomSaveFunction(gameData);
 
-    // Notify the parent component that the game is saved
-    onSaveGame();
   };
 
   return (
