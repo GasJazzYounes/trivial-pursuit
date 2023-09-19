@@ -7,7 +7,9 @@ function Homepage() {
   const [playerName, setPlayerName] = useState(""); // State to store the player's name
 
   const handlePlayClick = () => {
-    setShowTrivia(true); // Show Trivia when the "Play" button is clicked
+    if (playerName) {
+      setShowTrivia(true); // Show Trivia when the "Play" button is clicked
+    }
   };
 
   const handleNameChange = (event) => {
@@ -25,6 +27,7 @@ function Homepage() {
             value={playerName}
             onChange={handleNameChange}
             className={styles["select-dropdown"]}
+            required
           />
           <button onClick={handlePlayClick}
           className={styles["play-button"]}>Play</button>

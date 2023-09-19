@@ -6,7 +6,7 @@ import QuestionDisplay from "./QuestionDisplay";
 import GameResult from "./GameResult";
 import SaveGameButton from "./SaveGameButton";
 
-function Trivia() {
+function Trivia({ playerName }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [numOfQuestions, setNumOfQuestions] = useState(10);
@@ -88,7 +88,7 @@ function Trivia() {
       )}
 
       {currentQuestionIndex >= questions.length && (
-        <SaveGameButton userAnswers={userAnswers} questions={questions} />
+        <SaveGameButton userAnswers={userAnswers} questions={questions} playerName={playerName}/>
       )}
     </div>
   );

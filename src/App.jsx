@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Homepage from './components/Homepage/Homepage';
 import Instructions from './components/Instructions/Instructions'; 
 import Leaderboard from './components/Leaderboard/Leaderboard'; 
-import Trivia from './components/Trivia/Trivia'; 
+import Trivia from './components/Trivia/Trivia';
 
 function App() {
   return (
