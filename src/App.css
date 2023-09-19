@@ -78,3 +78,15 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+/* trivia stuff */
+
+/* Add padding to the question container */
+.question-container {
+  padding: 20px; /* Adjust the padding as needed */
+}
+
+/* Add margin-top to the next button container */
+.next-button-container {
+  margin-top: 20px; /* Adjust the margin as needed */
+}

@@ -74,6 +74,7 @@ function Trivia({ playerName }) {
       {error && <ErrorMessage message={error} />}
 
       {questions.length > 0 && currentQuestionIndex < questions.length && (
+        <div className="question-container">
         <QuestionDisplay
           question={questions[currentQuestionIndex]}
           currentQuestionIndex={currentQuestionIndex}
@@ -81,6 +82,7 @@ function Trivia({ playerName }) {
           onAnswerSelect={handleAnswerSelect}
           onNextQuestion={handleNextQuestion}
         />
+        </div>
       )}
 
       {currentQuestionIndex >= questions.length && (
