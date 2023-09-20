@@ -71,7 +71,7 @@ function Trivia({ playerName }) {
         <option value="20">20 Questions</option>
       </select>
       <div className="generate-questions-button-container">
-      <button onClick={fetchQuestions}>Generate Questions</button>
+      <button className="trivia-button" onClick={fetchQuestions}>Generate Questions</button>
       </div>
       </div>
 

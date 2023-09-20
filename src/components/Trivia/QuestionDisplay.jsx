@@ -33,7 +33,7 @@ function QuestionDisplay({ question, currentQuestionIndex, userAnswers, onAnswer
 
       {/* place the Next Question button underneath */}
       <div className="next-button-container">
-      <button onClick={onNextQuestion} disabled={userAnswers[currentQuestionIndex] === undefined}>
+      <button className="trivia-button" onClick={onNextQuestion} disabled={userAnswers[currentQuestionIndex] === undefined}>
           Next Question
         </button>
     </div>

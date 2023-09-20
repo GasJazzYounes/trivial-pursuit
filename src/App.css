@@ -111,15 +111,16 @@ select {
 
 
 /* style for the button */
-button.custom-button {
+.trivia-button {
   padding: 10px 20px;
   background-color: #86c2ae; 
   color: white; 
   border: none; 
   border-radius: 5px; 
   cursor: pointer; 
+  transition: background-color 0.3s ease; 
 }
 
-button:hover {
+.trivia-button:hover {
   background-color: var(--accent-color); 
 }
