@@ -61,6 +61,7 @@ function Trivia({ playerName }) {
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
       />
+      <div className="select-category">
       <select
         value={numOfQuestions}
         onChange={(e) => setNumOfQuestions(e.target.value)}
@@ -70,6 +71,7 @@ function Trivia({ playerName }) {
         <option value="15">15 Questions</option>
         <option value="20">20 Questions</option>
       </select>
+      </div>
       <div className="generate-questions-button-container">
       <button className="trivia-button" onClick={fetchQuestions}>Generate Questions</button>
       </div>

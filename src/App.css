@@ -101,14 +101,16 @@ body {
 
 /* style for select elements */
 select {
-  padding: 8px; 
-  font-size: 16px; 
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  margin-right: 10px; 
-  margin-bottom: 10px; 
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #577f90;
 }
 
+.select-category {
+  padding: 20px;
+}
 
 /* style for the button */
 .trivia-button {
