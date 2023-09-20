@@ -15,6 +15,7 @@
 .navbar .logo {
   width: 50px;
   height: auto;
+  color:#86c2ae;
 }
 
 .navbar .nav-links {
@@ -22,6 +23,7 @@
   display: flex;
   margin: 0; 
   padding: 0; 
+ 
 }
 
 .navbar .nav-links li {
@@ -32,9 +34,12 @@
   margin-right: 40px;
 }
 
-.navbar .nav-links li:hover {
-  text-decoration: underline;
+.navbar .nav-links li a {
   color: #86c2ae;
 }
 
+.navbar .nav-links li a:hover {
+ color: #f0917a;
+ transition: 0.3s ease-in-out;
+}
   
