@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { getDatabase, ref, push } from 'firebase/database';
+import app from '../../Firebase';
 
-function SaveGameButton({ onSaveGame }) {
-  const saveGame = () => {
-    // Add the logic to save the game here (firebase integration pending)
+function SaveGameButton({ playerName, userAnswers, questions }) {
+  const [saveMessage, setSaveMessage] = useState('');
 
-    // Example logic (you can customize this):
-    // const gameData = {
-    //   questions,
-    //   userAnswers,
-    //   timestamp: new Date().toISOString(),
-    // };
-    // YourCustomSaveFunction(gameData);
+  const saveGame = async () => {
+    try {
+      const database = getDatabase(app);
+      const dbRef = ref(database);
+      const score = userAnswers.filter(
+        (answer, index) => answer === questions[index].correct_answer
+      ).length;
 
-    // Notify the parent component that the game is saved
-    onSaveGame();
+      const player = {
+        playerName: playerName,
+        playerScore: `${score}/${questions.length}`,
+      };
+
+      await push(dbRef, player);
+      setSaveMessage('Game data saved successfully!');
+    } catch (error) {
+      console.error('Error saving data:', error);
+      setSaveMessage('Failed to save game data.');
+    }
   };
 
   return (
-    <button onClick={saveGame}>Save Game</button>
+    <div>
+      <button onClick={saveGame}>Save Game</button>
+      {saveMessage && <div className="save-message">{saveMessage}</div>}
+    </div>
   );
 }
 

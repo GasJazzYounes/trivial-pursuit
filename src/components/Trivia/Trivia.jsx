@@ -6,7 +6,8 @@ import QuestionDisplay from "./QuestionDisplay";
 import GameResult from "./GameResult";
 import SaveGameButton from "./SaveGameButton";
 
-function Trivia() {
+
+function Trivia({ playerName }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [numOfQuestions, setNumOfQuestions] = useState(10);
@@ -54,6 +55,7 @@ function Trivia() {
   return (
     <div>
       <h1>Trivia Game App</h1>
+      <div className="generate-questions-container">
       <CategoryDropdown
         categories={categories}
         selectedCategory={selectedCategory}
@@ -68,12 +70,16 @@ function Trivia() {
         <option value="15">15 Questions</option>
         <option value="20">20 Questions</option>
       </select>
+      <div className="generate-questions-button-container">
       <button onClick={fetchQuestions}>Generate Questions</button>
+      </div>
+      </div>
 
       {loading && <LoadingIndicator />}
       {error && <ErrorMessage message={error} />}
 
       {questions.length > 0 && currentQuestionIndex < questions.length && (
+        <div className="question-container">
         <QuestionDisplay
           question={questions[currentQuestionIndex]}
           currentQuestionIndex={currentQuestionIndex}
@@ -81,6 +87,7 @@ function Trivia() {
           onAnswerSelect={handleAnswerSelect}
           onNextQuestion={handleNextQuestion}
         />
+        </div>
       )}
 
       {currentQuestionIndex >= questions.length && (
@@ -88,7 +95,7 @@ function Trivia() {
       )}
 
       {currentQuestionIndex >= questions.length && (
-        <SaveGameButton userAnswers={userAnswers} questions={questions} />
+        <SaveGameButton userAnswers={userAnswers} questions={questions} playerName={playerName}/>
       )}
     </div>
   );

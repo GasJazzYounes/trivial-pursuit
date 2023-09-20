@@ -6,7 +6,7 @@ function QuestionDisplay({ question, currentQuestionIndex, userAnswers, onAnswer
   const decodedQuestion = he.decode(question.question);
 
   return (
-    <div>
+    <div className="question-container">
       <h2>Question {currentQuestionIndex + 1}</h2>
       <p>{decodedQuestion}</p> {/* use the decoded question */}
       {/* render answer options */}
@@ -30,7 +30,13 @@ function QuestionDisplay({ question, currentQuestionIndex, userAnswers, onAnswer
         />{' '}
         {he.decode(question.correct_answer)} {/* decode correct answer */}
       </label>
-      <button onClick={onNextQuestion}>Next Question</button>
+
+      {/* place the Next Question button underneath */}
+      <div className="next-button-container">
+      <button onClick={onNextQuestion} disabled={userAnswers[currentQuestionIndex] === undefined}>
+          Next Question
+        </button>
+    </div>
     </div>
   );
 }
