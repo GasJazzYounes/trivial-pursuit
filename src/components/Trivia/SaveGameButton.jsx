@@ -28,7 +28,7 @@ function SaveGameButton({ playerName, userAnswers, questions }) {
 
   return (
     <div>
-      <button onClick={saveGame}>Save Game</button>
+      <button className="trivia-button" onClick={saveGame}>Save Game</button>
       {saveMessage && <div className="save-message">{saveMessage}</div>}
     </div>
   );
