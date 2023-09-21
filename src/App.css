@@ -23,6 +23,7 @@ body {
   --primary-color: #577f90;
   --secondary-color: #86c2ae;
   --accent-color: #f0917a;
+  background: linear-gradient(to right, #577f90, #86c2ae, #f0917a);
 }
 
 /* center content */
@@ -31,6 +32,7 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
 
 /* logo styles */
@@ -117,7 +119,7 @@ select {
   padding: 10px 20px;
   background-color: #86c2ae; 
   color: white; 
-  border: none; 
+  border: 0.01px solid #577f90;
   border-radius: 5px; 
   cursor: pointer; 
   transition: background-color 0.3s ease; 
@@ -125,4 +127,5 @@ select {
 
 .trivia-button:hover {
   background-color: var(--accent-color); 
+  border: 0.01px solid #577f90;
 }
