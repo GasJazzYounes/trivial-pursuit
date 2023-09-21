@@ -54,7 +54,7 @@ function Trivia({ playerName }) {
 
   return (
     <div>
-      <h1>Trivia Game App</h1>
+      <h1>Which Game Mode?</h1>
       <div className="generate-questions-container">
       <CategoryDropdown
         categories={categories}
