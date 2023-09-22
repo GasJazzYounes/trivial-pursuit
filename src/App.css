@@ -122,7 +122,7 @@ select {
   border: 0.01px solid #577f90;
   border-radius: 5px; 
   cursor: pointer; 
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease-in-out; 
 }
 
 .trivia-button:hover {
