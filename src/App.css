@@ -93,6 +93,10 @@ body {
 
 .generate-questions-container {
   padding: 20px; /* Adjust the padding as needed */
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .generate-questions-button-container {
@@ -119,6 +123,15 @@ select {
   border-radius: 5px; 
   cursor: pointer; 
   transition: background-color 0.3s ease; 
+}
+
+.disabled {
+  background-color: grey;
+}
+
+.disabled:hover {
+  cursor:not-allowed;
+  background-color: gray!important;
 }
 
 .trivia-button:hover {
