@@ -16,6 +16,7 @@ function Trivia({ playerName }) {
   const [userAnswers, setUserAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showCategories, setShowCategories] = useState(true);
 
   useEffect(() => {
     // Fetch categories from the API on component mount
@@ -28,6 +29,7 @@ function Trivia({ playerName }) {
   const fetchQuestions = async () => {
     setError("");
     setLoading(true);
+    setShowCategories(false);
 
     const apiUrl = `https://opentdb.com/api.php?amount=${numOfQuestions}&category=${selectedCategory}`;
     try {
@@ -55,7 +57,7 @@ function Trivia({ playerName }) {
   return (
     <div>
       <h1>Trivia Game App</h1>
-      <div className="generate-questions-container">
+      {showCategories && <div className="generate-questions-container">
       <CategoryDropdown
         categories={categories}
         selectedCategory={selectedCategory}
@@ -73,7 +75,7 @@ function Trivia({ playerName }) {
       <div className="generate-questions-button-container">
       <button className="trivia-button" onClick={fetchQuestions}>Generate Questions</button>
       </div>
-      </div>
+      </div>}
 
       {loading && <LoadingIndicator />}
       {error && <ErrorMessage message={error} />}
