@@ -5,6 +5,12 @@ import app from '../../Firebase';
 function SaveGameButton({ playerName, userAnswers, questions }) {
   const [saveMessage, setSaveMessage] = useState('');
 
+  const disableButton = (e) => {
+    const button = e.target;
+    button.disabled = true;
+    button.classList.add('disabled');
+  }
+
   const saveGame = async () => {
     try {
       const database = getDatabase(app);
@@ -28,7 +34,7 @@ function SaveGameButton({ playerName, userAnswers, questions }) {
 
   return (
     <div>
-      <button className="trivia-button" onClick={saveGame}>Save Game</button>
+      <button className="trivia-button" onClick={(e) => {saveGame(); disableButton(e)}}>Save Game</button>
       {saveMessage && <div className="save-message">{saveMessage}</div>}
     </div>
   );
