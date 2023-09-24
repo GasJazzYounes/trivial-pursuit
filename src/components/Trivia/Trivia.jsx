@@ -5,6 +5,7 @@ import ErrorMessage from "./ErrorMessage";
 import QuestionDisplay from "./QuestionDisplay";
 import GameResult from "./GameResult";
 import SaveGameButton from "./SaveGameButton";
+import Countdown from "./Countdown";
 
 
 function Trivia({ playerName }) {
@@ -17,6 +18,7 @@ function Trivia({ playerName }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showCategories, setShowCategories] = useState(true);
+  const [showCountdown, setShowCountdown] = useState(false);
 
   useEffect(() => {
     // Fetch categories from the API on component mount
@@ -28,7 +30,7 @@ function Trivia({ playerName }) {
 
   const fetchQuestions = async () => {
     setError("");
-    setLoading(true);
+    setShowCountdown(true);
     setShowCategories(false);
 
     const apiUrl = `https://opentdb.com/api.php?amount=${numOfQuestions}&category=${selectedCategory}`;
@@ -39,8 +41,6 @@ function Trivia({ playerName }) {
       setCurrentQuestionIndex(0); // Reset to the first question
     } catch (err) {
       setError("Error fetching questions");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -52,6 +52,10 @@ function Trivia({ playerName }) {
 
   const handleNextQuestion = () => {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+
+  const handleCountdown = () => {
+    setShowCountdown(false);
   };
 
   return (
@@ -79,18 +83,19 @@ function Trivia({ playerName }) {
 
       {loading && <LoadingIndicator />}
       {error && <ErrorMessage message={error} />}
-
-      {questions.length > 0 && currentQuestionIndex < questions.length && (
-        <div className="question-container">
-        <QuestionDisplay
-          question={questions[currentQuestionIndex]}
-          currentQuestionIndex={currentQuestionIndex}
-          userAnswers={userAnswers}
-          onAnswerSelect={handleAnswerSelect}
-          onNextQuestion={handleNextQuestion}
-        />
-        </div>
-      )}
+      {showCountdown && <Countdown hideCountdown={handleCountdown}/>}
+      {questions.length > 0 && currentQuestionIndex < questions.length && !showCountdown && (
+          <div className="question-container">
+          <QuestionDisplay
+            key={currentQuestionIndex}
+            question={questions[currentQuestionIndex]}
+            currentQuestionIndex={currentQuestionIndex}
+            userAnswers={userAnswers}
+            onAnswerSelect={handleAnswerSelect}
+            onNextQuestion={handleNextQuestion}
+          />
+          </div>
+        )}
 
       {currentQuestionIndex >= questions.length && (
         <GameResult userAnswers={userAnswers} questions={questions} />
