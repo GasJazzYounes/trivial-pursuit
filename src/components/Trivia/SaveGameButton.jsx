@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getDatabase, ref, push } from 'firebase/database';
 import app from '../../Firebase';
 
-function SaveGameButton({ playerName, userAnswers, questions }) {
+function SaveGameButton({ playerName, userAnswers, questions, playAgain }) {
   const [saveMessage, setSaveMessage] = useState('');
 
   const disableButton = (e) => {
@@ -34,7 +34,10 @@ function SaveGameButton({ playerName, userAnswers, questions }) {
 
   return (
     <div>
-      <button className="trivia-button" onClick={(e) => {saveGame(); disableButton(e)}}>Save Game</button>
+      <div className="finish-buttons">
+        <button className="trivia-button" onClick={(e) => {saveGame(); disableButton(e)}}>Save Game</button>
+        <button className="play-again trivia-button" onClick={playAgain}>Play Again</button>
+      </div>
       {saveMessage && <div className="save-message">{saveMessage}</div>}
     </div>
   );

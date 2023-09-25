@@ -58,6 +58,10 @@ function Trivia({ playerName }) {
     setShowCountdown(false);
   };
 
+  const handleNewGame = () => {
+    setShowCategories(true);
+  };
+
   return (
     <div>
       <h1>Trivia Game App</h1>
@@ -97,12 +101,11 @@ function Trivia({ playerName }) {
           </div>
         )}
 
-      {currentQuestionIndex >= questions.length && (
-        <GameResult userAnswers={userAnswers} questions={questions} />
-      )}
-
-      {currentQuestionIndex >= questions.length && (
-        <SaveGameButton userAnswers={userAnswers} questions={questions} playerName={playerName}/>
+      {questions.length > 0 && !showCountdown && currentQuestionIndex >= questions.length && (
+        <>
+          <GameResult userAnswers={userAnswers} questions={questions} />
+          <SaveGameButton userAnswers={userAnswers} questions={questions} playerName={playerName} playAgain={handleNewGame}/>
+        </>
       )}
     </div>
   );

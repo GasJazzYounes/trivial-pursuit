@@ -174,3 +174,9 @@ input[type="radio"]:checked {
 .last-chance {
   color: red;
 }
+
+.finish-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
