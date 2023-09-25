@@ -1,5 +1,6 @@
 import React from 'react';
 import he from 'he';
+import GameCountdown from './GameCountdown';
 
 function QuestionDisplay({ question, currentQuestionIndex, userAnswers, onAnswerSelect, onNextQuestion }) {
   // decoding magic 
@@ -7,6 +8,7 @@ function QuestionDisplay({ question, currentQuestionIndex, userAnswers, onAnswer
 
   return (
     <div className="question-container">
+      <GameCountdown nextQuestion={onNextQuestion}/>
       <h2>Question {currentQuestionIndex + 1}</h2>
       <p>{decodedQuestion}</p> {/* use the decoded question */}
       {/* render answer options */}

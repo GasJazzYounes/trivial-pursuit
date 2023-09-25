@@ -162,4 +162,15 @@ input[type="radio"]:checked {
   margin: 0;
 }
 
+.countdown {
+  font-size: 100px;
+}
 
+.game-countdown {
+  font-size: 40px;
+  margin: 0;
+}
+
+.last-chance {
+  color: red;
+}
