@@ -23,6 +23,7 @@ body {
   --primary-color: #577f90;
   --secondary-color: #86c2ae;
   --accent-color: #f0917a;
+  --outline-color: #577f90; /* Define the outline color here */
   background: linear-gradient(to right, #577f90, #86c2ae, #f0917a);
 }
 
@@ -159,6 +160,7 @@ input[type="radio"] {
 
 input[type="radio"]:checked {
   background-color: var(--secondary-color);
+  outline: 1px solid var(--outline-color);
 
 }
 
