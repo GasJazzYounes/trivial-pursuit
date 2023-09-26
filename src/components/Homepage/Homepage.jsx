@@ -19,7 +19,7 @@ function Homepage() {
   return (
     <div className={styles.homepage}>
       {!showTrivia && ( // Only show the input field if Trivia is not shown
-        <div>
+        <form onSubmit={handlePlayClick}>
           <h1>Trivia Game App</h1>
           <input
             type="text"
@@ -29,9 +29,9 @@ function Homepage() {
             className={styles["select-dropdown"]}
             required
           />
-          <button onClick={handlePlayClick}
+          <button
           className={styles["play-button"]}>Play</button>
-        </div>
+        </form>
       )}
       {showTrivia && (
         <div className={styles["good-luck-message"]}>

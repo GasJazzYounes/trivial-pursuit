@@ -5,6 +5,7 @@ import ErrorMessage from "./ErrorMessage";
 import QuestionDisplay from "./QuestionDisplay";
 import GameResult from "./GameResult";
 import SaveGameButton from "./SaveGameButton";
+import Countdown from "./Countdown";
 
 
 function Trivia({ playerName }) {
@@ -16,6 +17,8 @@ function Trivia({ playerName }) {
   const [userAnswers, setUserAnswers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showCategories, setShowCategories] = useState(true);
+  const [showCountdown, setShowCountdown] = useState(false);
 
   useEffect(() => {
     // Fetch categories from the API on component mount
@@ -27,7 +30,8 @@ function Trivia({ playerName }) {
 
   const fetchQuestions = async () => {
     setError("");
-    setLoading(true);
+    setShowCountdown(true);
+    setShowCategories(false);
 
     const apiUrl = `https://opentdb.com/api.php?amount=${numOfQuestions}&category=${selectedCategory}`;
     try {
@@ -37,8 +41,6 @@ function Trivia({ playerName }) {
       setCurrentQuestionIndex(0); // Reset to the first question
     } catch (err) {
       setError("Error fetching questions");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -52,10 +54,18 @@ function Trivia({ playerName }) {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
+  const handleCountdown = () => {
+    setShowCountdown(false);
+  };
+
+  const handleNewGame = () => {
+    setShowCategories(true);
+  };
+
   return (
     <div>
       <h1>Trivia Game App</h1>
-      <div className="generate-questions-container">
+      {showCategories && <div className="generate-questions-container">
       <CategoryDropdown
         categories={categories}
         selectedCategory={selectedCategory}
@@ -73,29 +83,29 @@ function Trivia({ playerName }) {
       <div className="generate-questions-button-container">
       <button className="trivia-button" onClick={fetchQuestions}>Generate Questions</button>
       </div>
-      </div>
+      </div>}
 
       {loading && <LoadingIndicator />}
       {error && <ErrorMessage message={error} />}
+      {showCountdown && <Countdown hideCountdown={handleCountdown}/>}
+      {questions.length > 0 && currentQuestionIndex < questions.length && !showCountdown && (
+          <div className="question-container">
+          <QuestionDisplay
+            key={currentQuestionIndex}
+            question={questions[currentQuestionIndex]}
+            currentQuestionIndex={currentQuestionIndex}
+            userAnswers={userAnswers}
+            onAnswerSelect={handleAnswerSelect}
+            onNextQuestion={handleNextQuestion}
+          />
+          </div>
+        )}
 
-      {questions.length > 0 && currentQuestionIndex < questions.length && (
-        <div className="question-container">
-        <QuestionDisplay
-          question={questions[currentQuestionIndex]}
-          currentQuestionIndex={currentQuestionIndex}
-          userAnswers={userAnswers}
-          onAnswerSelect={handleAnswerSelect}
-          onNextQuestion={handleNextQuestion}
-        />
-        </div>
-      )}
-
-      {currentQuestionIndex >= questions.length && (
-        <GameResult userAnswers={userAnswers} questions={questions} />
-      )}
-
-      {currentQuestionIndex >= questions.length && (
-        <SaveGameButton userAnswers={userAnswers} questions={questions} playerName={playerName}/>
+      {questions.length > 0 && !showCountdown && currentQuestionIndex >= questions.length && (
+        <>
+          <GameResult userAnswers={userAnswers} questions={questions} />
+          <SaveGameButton userAnswers={userAnswers} questions={questions} playerName={playerName} playAgain={handleNewGame}/>
+        </>
       )}
     </div>
   );
