@@ -95,6 +95,10 @@ body {
 
 .generate-questions-container {
   padding: 20px; /* Adjust the padding as needed */
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .generate-questions-button-container {
@@ -125,7 +129,59 @@ select {
   transition: background-color 0.3s ease-in-out; 
 }
 
+.disabled {
+  background-color: grey;
+}
+
+.disabled:hover {
+  cursor:not-allowed;
+  background-color: gray!important;
+}
+
 .trivia-button:hover {
   background-color: var(--accent-color); 
   border: 0.01px solid #577f90;
+}
+
+/* Radio button styling */
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0 10px;
+
+  font: inherit;
+  width: 1.15em;
+  height: 1.15em;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+input[type="radio"]:checked {
+  background-color: var(--secondary-color);
+
+}
+
+.answer {
+  display: inline-block;
+  margin: 0;
+}
+
+.countdown {
+  font-size: 100px;
+}
+
+.game-countdown {
+  font-size: 40px;
+  margin: 0;
+}
+
+.last-chance {
+  color: red;
+}
+
+.finish-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
