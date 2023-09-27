@@ -23,12 +23,14 @@
     color: #fff;
     font-size: 20px;
     padding: 10px 20px;
-    border: none;
+    border: 0.01px solid #577f90;
     cursor: pointer;
     margin: 10px;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease-in-out; 
   }
   
   .play-button:hover {
-    background-color: #f0917a; 
+    background-color: #f0917a;
+    border-color:  #577f90;
+    
   }
