@@ -19,6 +19,7 @@ function Trivia({ playerName }) {
   const [error, setError] = useState("");
   const [showCategories, setShowCategories] = useState(true);
   const [showCountdown, setShowCountdown] = useState(false);
+  const [showButtons, setShowButtons] = useState(true);
 
   useEffect(() => {
     // Fetch categories from the API on component mount
@@ -41,6 +42,8 @@ function Trivia({ playerName }) {
       setCurrentQuestionIndex(0); // Reset to the first question
     } catch (err) {
       setError("Error fetching questions");
+    } finally {
+      setShowButtons(true);
     }
   };
 
@@ -60,6 +63,7 @@ function Trivia({ playerName }) {
 
   const handleNewGame = () => {
     setShowCategories(true);
+    setShowButtons(false);
   };
 
   return (
@@ -101,7 +105,7 @@ function Trivia({ playerName }) {
           </div>
         )}
 
-      {questions.length > 0 && !showCountdown && currentQuestionIndex >= questions.length && (
+      {questions.length > 0 && !showCountdown && currentQuestionIndex >= questions.length && showButtons && (
         <>
           <GameResult userAnswers={userAnswers} questions={questions} />
           <SaveGameButton userAnswers={userAnswers} questions={questions} playerName={playerName} playAgain={handleNewGame}/>
