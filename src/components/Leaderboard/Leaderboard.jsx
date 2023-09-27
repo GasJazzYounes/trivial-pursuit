@@ -22,14 +22,18 @@ function Leaderboard() {
   return (
     <div className={styles.leaderBoard}>
       <h2>Leaderboard</h2>
-      {playerInfo.map((player, index) => {
-        return (
-          <div className={styles.players} key={index}>
-            <p>{player.playerName}</p>
-            <p>{player.playerScore}</p>
-          </div>
-        );
-      })}
+      {playerInfo
+        .sort((a, b) => {
+          return b.playerPosition - a.playerPosition;
+        })
+        .map((player, index) => {
+          return (
+            <div className={styles.players} key={index}>
+              <p>{player.playerName}</p>
+              <p>{player.playerScore}</p>
+            </div>
+          );
+        })}
       {/* <p>This is the leaderboard page. Here you can view the top players.</p> */}
       {/* You can add a table or any other content to display the leaderboard data */}
     </div>
