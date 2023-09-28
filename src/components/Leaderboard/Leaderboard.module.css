@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   height: 80vh;
+  overflow: auto;
   background: linear-gradient(
     to bottom,
 
