@@ -16,6 +16,7 @@ h6 {
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
+  background-color: #577f90;
 }
 
 /* colour scheme */
@@ -24,7 +25,6 @@ body {
   --secondary-color: #86c2ae;
   --accent-color: #f0917a;
   --outline-color: #577f90; /* Define the outline color here */
-  background: linear-gradient(to right, #577f90, #86c2ae, #f0917a);
 }
 
 /* center content */
