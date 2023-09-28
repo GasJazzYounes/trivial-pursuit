@@ -21,7 +21,7 @@
 }
 
 .navbar .logo:hover {
-  color: #f0917a;
+  color: white;
   text-decoration: underline;
   transition: 0.3s ease-in-out;
   text-decoration-thickness: 2px;
