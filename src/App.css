@@ -33,7 +33,6 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  
 }
 
 /* logo styles */
@@ -122,12 +121,12 @@ select {
 /* style for the button */
 .trivia-button {
   padding: 10px 20px;
-  background-color: #86c2ae; 
-  color: white; 
+  background-color: #86c2ae;
+  color: white;
   border: 0.01px solid #577f90;
-  border-radius: 5px; 
-  cursor: pointer; 
-  transition: background-color 0.3s ease-in-out; 
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .disabled {
@@ -135,12 +134,12 @@ select {
 }
 
 .disabled:hover {
-  cursor:not-allowed;
-  background-color: gray!important;
+  cursor: not-allowed;
+  background-color: gray !important;
 }
 
 .trivia-button:hover {
-  background-color: var(--accent-color); 
+  background-color: var(--accent-color);
   border: 0.01px solid #577f90;
 }
 
@@ -161,7 +160,6 @@ input[type="radio"] {
 input[type="radio"]:checked {
   background-color: var(--secondary-color);
   outline: 1px solid var(--outline-color);
-
 }
 
 .answer {
@@ -186,4 +184,10 @@ input[type="radio"]:checked {
   display: flex;
   gap: 20px;
   justify-content: center;
+}
+
+.answer-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
