@@ -2,7 +2,7 @@ import React from "react";
 
 function Instructions() {
   return (
-    <div>
+    <div className="instructions">
       <h2>Instructions</h2>
       <p>
         Welcome to the trivia game! Here are some instructions on how to play:

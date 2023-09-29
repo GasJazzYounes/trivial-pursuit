@@ -35,25 +35,25 @@ function SaveGameButton({ playerName, userAnswers, questions, playAgain }) {
     }
   };
 
-  return (
-    <div>
-      <div className="finish-buttons">
-        <button
-          className="trivia-button"
-          onClick={(e) => {
-            saveGame();
-            disableButton(e);
-          }}
-        >
-          Save Game
-        </button>
-        <button className="play-again trivia-button" onClick={playAgain}>
-          Play Again
-        </button>
-      </div>
-      {saveMessage && <div className="save-message">{saveMessage}</div>}
-    </div>
-  );
+   return (
+     <div>
+       <div className="finish-buttons">
+         <button
+           className="trivia-button"
+           onClick={(e) => {
+             saveGame();
+             disableButton(e);
+           }}
+         >
+           Save Game
+         </button>
+         <button className="play-again trivia-button" onClick={playAgain}>
+           Play Again
+         </button>
+       </div>
+       {saveMessage && <div className="save-message">{saveMessage}</div>}
+     </div>
+   );
 }
 
 export default SaveGameButton;

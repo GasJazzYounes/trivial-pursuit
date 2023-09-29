@@ -27,6 +27,11 @@ body {
   --outline-color: #577f90; /* Define the outline color here */
 }
 
+body {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 /* center content */
 #root {
   max-width: 1280px;
@@ -85,7 +90,9 @@ body {
 
 /* Add padding to the question container */
 .question-container {
-  padding: 20px; /* Adjust the padding as needed */
+  width: 70%;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 /* Add margin-top to the next button container */
@@ -97,8 +104,9 @@ body {
   padding: 20px; /* Adjust the padding as needed */
   display: flex;
   flex-direction: column;
-  width: 80%;
   margin: 0 auto;
+  width: 400px;
+  gap: 20px;
 }
 
 .generate-questions-button-container {
@@ -190,4 +198,13 @@ input[type="radio"]:checked {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
+
+
+.instructions {
+  width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
