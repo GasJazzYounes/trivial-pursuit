@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import app from "../../Firebase";
 import { getDatabase, ref, onValue, get } from "firebase/database";
-import styles from "./LeaderBoard.module.css";
+import styles from "./Leaderboard.module.css";
 function Leaderboard() {
   const database = getDatabase(app);
   const dbRef = ref(database);
