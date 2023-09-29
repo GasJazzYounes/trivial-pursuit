@@ -25,14 +25,11 @@ body {
   --secondary-color: #86c2ae;
   --accent-color: #f0917a;
   --outline-color: #577f90; /* Define the outline color here */
-<<<<<<< HEAD
 }
 
 body {
   background-color: var(--primary-color);
   color: white;
-=======
->>>>>>> 8b1a2d0db611cff70d1c31784e57e554135f2543
 }
 
 /* center content */
