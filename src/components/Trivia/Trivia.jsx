@@ -22,7 +22,7 @@ function Trivia({ playerName }) {
   const [showButtons, setShowButtons] = useState(true);
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [selectedQuestionType, setSelectedQuestionType] = useState("");
-  const [showCorrectNotification, setShowCorrectNotification] = useState(false); // just tryng
+  const [showCorrectNotification, setShowCorrectNotification] = useState(false); // just trying
   const [showWrongNotification, setShowWrongNotification] = useState(false); // just try
 
   useEffect(() => {
