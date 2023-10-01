@@ -7,7 +7,6 @@ import GameResult from "./GameResult";
 import SaveGameButton from "./SaveGameButton";
 import Countdown from "./Countdown";
 
-
 function Trivia({ playerName }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -20,6 +19,8 @@ function Trivia({ playerName }) {
   const [showCategories, setShowCategories] = useState(true);
   const [showCountdown, setShowCountdown] = useState(false);
   const [showButtons, setShowButtons] = useState(true);
+  const [selectedDifficulty, setSelectedDifficulty] = useState("");
+  const [selectedQuestionType, setSelectedQuestionType] = useState("");
 
   useEffect(() => {
     // Fetch categories from the API on component mount
@@ -33,8 +34,20 @@ function Trivia({ playerName }) {
     setError("");
     setShowCountdown(true);
     setShowCategories(false);
+    if (!selectedDifficulty) {
+      setError("Please select a difficulty level."); // I have to style it with red color
+      return;
+    }
+    if (!selectedQuestionType) {
+      setError("Please select a question type.");
+      return;
+    }
+    if (!selectedCategory) {
+      setError("Please select a category.");
+      return;
+    }
 
-    const apiUrl = `https://opentdb.com/api.php?amount=${numOfQuestions}&category=${selectedCategory}`;
+    const apiUrl = `https://opentdb.com/api.php?amount=${numOfQuestions}&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=${selectedQuestionType}`;
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -69,48 +82,82 @@ function Trivia({ playerName }) {
   return (
     <div>
       <h1>Trivia Game App</h1>
-      {showCategories && <div className="generate-questions-container">
-      <CategoryDropdown
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-      />
-      <select
-        value={numOfQuestions}
-        onChange={(e) => setNumOfQuestions(e.target.value)}
-      >
-        <option value="5">5 Questions</option>
-        <option value="10">10 Questions</option>
-        <option value="15">15 Questions</option>
-        <option value="20">20 Questions</option>
-      </select>
-      <div className="generate-questions-button-container">
-      <button className="trivia-button" onClick={fetchQuestions}>Generate Questions</button>
-      </div>
-      </div>}
+      {showCategories && (
+        <div className="generate-questions-container">
+          <CategoryDropdown
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+          />
+          <select
+            value={selectedQuestionType}
+            onChange={(e) => setSelectedQuestionType(e.target.value)}
+          >
+            <option value="" disabled>
+              Select a question type
+            </option>
+            <option value="multiple">Multiple Choice</option>
+            <option value="boolean">True / False</option>
+          </select>
+          <select
+            value={selectedDifficulty}
+            onChange={(e) => setSelectedDifficulty(e.target.value)}
+          >
+            <option value="">Select a difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <select
+            value={numOfQuestions}
+            onChange={(e) => setNumOfQuestions(e.target.value)}
+          >
+            <option value="5">5 Questions</option>
+            <option value="10">10 Questions</option>
+            <option value="15">15 Questions</option>
+            <option value="20">20 Questions</option>
+          </select>
+
+          <div className="generate-questions-button-container">
+            <button className="trivia-button" onClick={fetchQuestions}>
+              Generate Questions
+            </button>
+          </div>
+        </div>
+      )}
 
       {loading && <LoadingIndicator />}
       {error && <ErrorMessage message={error} />}
-      {showCountdown && <Countdown hideCountdown={handleCountdown}/>}
-      {questions.length > 0 && currentQuestionIndex < questions.length && !showCountdown && (
+      {showCountdown && <Countdown hideCountdown={handleCountdown} />}
+      {questions.length > 0 &&
+        currentQuestionIndex < questions.length &&
+        !showCountdown && (
           <div className="question-container">
-          <QuestionDisplay
-            key={currentQuestionIndex}
-            question={questions[currentQuestionIndex]}
-            currentQuestionIndex={currentQuestionIndex}
-            userAnswers={userAnswers}
-            onAnswerSelect={handleAnswerSelect}
-            onNextQuestion={handleNextQuestion}
-          />
+            <QuestionDisplay
+              key={currentQuestionIndex}
+              question={questions[currentQuestionIndex]}
+              currentQuestionIndex={currentQuestionIndex}
+              userAnswers={userAnswers}
+              onAnswerSelect={handleAnswerSelect}
+              onNextQuestion={handleNextQuestion}
+            />
           </div>
         )}
 
-      {questions.length > 0 && !showCountdown && currentQuestionIndex >= questions.length && showButtons && (
-        <>
-          <GameResult userAnswers={userAnswers} questions={questions} />
-          <SaveGameButton userAnswers={userAnswers} questions={questions} playerName={playerName} playAgain={handleNewGame}/>
-        </>
-      )}
+      {questions.length > 0 &&
+        !showCountdown &&
+        currentQuestionIndex >= questions.length &&
+        showButtons && (
+          <>
+            <GameResult userAnswers={userAnswers} questions={questions} />
+            <SaveGameButton
+              userAnswers={userAnswers}
+              questions={questions}
+              playerName={playerName}
+              playAgain={handleNewGame}
+            />
+          </>
+        )}
     </div>
   );
 }
