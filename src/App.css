@@ -19,7 +19,7 @@ body {
   background-color: #577f90;
   display: flex;
   place-items: center;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 /* colour scheme */
@@ -203,11 +203,37 @@ input[type="radio"]:checked {
   gap: 20px;
 }
 
-
 .instructions {
   width: 600px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* styling the message notification */
+.answer-notification-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.answer-notification {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 18px;
+}
+
+.answer-notification p {
+  color: black;
 }

@@ -6,6 +6,7 @@ import QuestionDisplay from "./QuestionDisplay";
 import GameResult from "./GameResult";
 import SaveGameButton from "./SaveGameButton";
 import Countdown from "./Countdown";
+import AnswerNotification from "./AnswerNotification"; //just trying
 
 function Trivia({ playerName }) {
   const [categories, setCategories] = useState([]);
@@ -21,6 +22,8 @@ function Trivia({ playerName }) {
   const [showButtons, setShowButtons] = useState(true);
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [selectedQuestionType, setSelectedQuestionType] = useState("");
+  const [showCorrectNotification, setShowCorrectNotification] = useState(false); // just tryng
+  const [showWrongNotification, setShowWrongNotification] = useState(false); // just try
 
   useEffect(() => {
     // Fetch categories from the API on component mount
@@ -60,6 +63,8 @@ function Trivia({ playerName }) {
     }
   };
 
+  // making some changes
+
   const handleAnswerSelect = (selectedAnswer) => {
     const updatedUserAnswers = [...userAnswers];
     updatedUserAnswers[currentQuestionIndex] = selectedAnswer;
@@ -67,8 +72,29 @@ function Trivia({ playerName }) {
   };
 
   const handleNextQuestion = () => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    if (userAnswers[currentQuestionIndex] !== undefined) {
+      // i display the message
+      setShowCorrectNotification(
+        userAnswers[currentQuestionIndex] ===
+          questions[currentQuestionIndex].correct_answer
+      );
+      setShowWrongNotification(
+        userAnswers[currentQuestionIndex] !==
+          questions[currentQuestionIndex].correct_answer
+      );
+
+      // making timer
+      setTimeout(() => {
+        setShowCorrectNotification(false);
+        setShowWrongNotification(false);
+        setCurrentQuestionIndex(currentQuestionIndex + 1); // Move to the next question
+      }, 1000);
+    } else {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
   };
+
+  // finish trying
 
   const handleCountdown = () => {
     setShowCountdown(false);
@@ -141,6 +167,23 @@ function Trivia({ playerName }) {
               onAnswerSelect={handleAnswerSelect}
               onNextQuestion={handleNextQuestion}
             />
+
+            {/* trying here  */}
+            {showCorrectNotification && (
+              <AnswerNotification
+                message="Correct answer 👋👋👋👋"
+                show={showCorrectNotification}
+                onClose={() => setShowCorrectNotification(false)}
+              />
+            )}
+
+            {showWrongNotification && (
+              <AnswerNotification
+                message="Wrong answer! 😔😔😔😔"
+                show={showWrongNotification}
+                onClose={() => setShowWrongNotification(false)}
+              />
+            )}
           </div>
         )}
 
