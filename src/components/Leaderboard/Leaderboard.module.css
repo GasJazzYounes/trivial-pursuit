@@ -32,7 +32,8 @@
   margin: 0 auto;
   padding: 20px;
   font-size: 25px;
-  font-family: "Georgia", "Times New Roman", serif;
+  font-family: "Caveat Brush", cursive;
+  font-weight: bold;
   text-transform: uppercase;
 }
 .players p {

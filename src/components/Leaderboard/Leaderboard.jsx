@@ -21,7 +21,7 @@ function Leaderboard() {
 
   return (
     <div className={styles.leaderBoard}>
-      <h2>Leaderboard</h2>
+      <h2>Scoreboard</h2>
       {playerInfo
         .sort((a, b) => {
           return b.playerPosition - a.playerPosition;
