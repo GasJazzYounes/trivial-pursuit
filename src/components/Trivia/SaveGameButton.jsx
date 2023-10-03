@@ -19,7 +19,11 @@ function SaveGameButton({ playerName, userAnswers, questions, playAgain }) {
         (answer, index) => answer === questions[index].correct_answer
       ).length;
 
-      const percentage = (score / questions.length) * 100;
+      const rawPercentage = (score / questions.length) * 100;
+      const percentage = Number.isInteger(rawPercentage)
+        ? rawPercentage.toFixed(0)
+        : rawPercentage.toFixed(2);
+      
 
       const player = {
         playerName: playerName,
