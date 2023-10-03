@@ -12,22 +12,6 @@
   z-index: 1000;
 }
 
-.navbar .logo {
-  width: 50px;
-  font-size: 14px;
-  height: auto;
-  color: white;
-  margin-right: 75px;
-}
-
-.navbar .logo:hover {
-  color: #f0917a;
-  text-decoration: underline;
-  transition: 0.3s ease-in-out;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
-
 .navbar .nav-links {
   list-style: none;
   display: flex;
@@ -36,19 +20,21 @@
 }
 
 .navbar .nav-links li {
-  font-size: 14px;
+  font-size: 20px;
   cursor: pointer;
   flex: 1;
   text-align: center;
   margin-right: 75px;
+  font-family: "Caveat Brush", cursive;
 }
 
 .navbar .nav-links li a {
   color: white;
+  text-decoration: none;
 }
 
 .navbar .nav-links li a:hover {
-  color: #f0917a;
+  color: #577f90;;
   text-decoration: underline;
   transition: 0.3s ease-in-out;
   text-decoration-thickness: 2px;
