@@ -4,12 +4,11 @@ function GameResult({ userAnswers, questions }) {
   const score = userAnswers.filter(
     (answer, index) => answer === questions[index].correct_answer
   ).length;
-  console.log(`score`, score);
-  console.log(questions.length);
 
-  const percentage = (score / questions.length) * 100;
-
-  console.log(percentage);
+  const rawPercentage = (score / questions.length) * 100;
+  const percentage = Number.isInteger(rawPercentage)
+    ? rawPercentage.toFixed(0)
+    : rawPercentage.toFixed(2);
 
   return (
     <div>
