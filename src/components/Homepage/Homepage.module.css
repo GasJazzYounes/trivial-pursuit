@@ -1,0 +1,37 @@
+.homepage {
+    text-align: center;
+    padding: 20px; 
+  }
+  
+  .player-name {
+    font-size: 24px;
+    margin-bottom: 10px; 
+  }
+  
+  /* style dropdown/select options as needed */
+  .select-dropdown {
+    font-size: 18px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #577f90;
+  }
+  
+  /* play button styles */
+  .play-button {
+    background-color: #86c2ae; 
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: 0.01px solid #577f90;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease-in-out; 
+  }
+  
+  .play-button:hover {
+    background-color: #f0917a;
+    border-color:  #577f90;
+    
+  }
