@@ -109,7 +109,7 @@ function Trivia({ playerName }) {
     <div>
       <h1>Trivia Game App</h1>
       {showCategories && (
-        <div className="generate-questions-container">
+        <form className="generate-questions-container" onSubmit={fetchQuestions}>
           <CategoryDropdown
             categories={categories}
             selectedCategory={selectedCategory}
@@ -118,6 +118,7 @@ function Trivia({ playerName }) {
           <select
             value={selectedQuestionType}
             onChange={(e) => setSelectedQuestionType(e.target.value)}
+            required
           >
             <option value="" disabled>
               Select a question type
@@ -128,6 +129,7 @@ function Trivia({ playerName }) {
           <select
             value={selectedDifficulty}
             onChange={(e) => setSelectedDifficulty(e.target.value)}
+            required
           >
             <option value="">Select a difficulty</option>
             <option value="easy">Easy</option>
@@ -137,6 +139,7 @@ function Trivia({ playerName }) {
           <select
             value={numOfQuestions}
             onChange={(e) => setNumOfQuestions(e.target.value)}
+            required
           >
             <option value="5">5 Questions</option>
             <option value="10">10 Questions</option>
@@ -145,11 +148,11 @@ function Trivia({ playerName }) {
           </select>
 
           <div className="generate-questions-button-container">
-            <button className="trivia-button" onClick={fetchQuestions}>
+            <button className="trivia-button">
               Generate Questions
             </button>
           </div>
-        </div>
+        </form>
       )}
 
       {loading && <LoadingIndicator />}
