@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./Instructions.module.css";
 
 function Instructions() {
   return (
-    <div className="instructions">
+    <div className={styles.instructions}>
       <h2>Instructions</h2>
       <p>
         Welcome to the trivia game! Here are some instructions on how to play:
@@ -18,3 +19,4 @@ function Instructions() {
 }
 
 export default Instructions;
+
