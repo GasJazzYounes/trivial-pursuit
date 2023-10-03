@@ -39,41 +39,6 @@ body {
   text-align: center;
 }
 
-/* logo styles */
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-/* hover effect for logo */
-.logo:hover {
-  filter: drop-shadow(0 0 2em var(--primary-color));
-}
-
-/* add different hover effect for .react class within .logo */
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em var(--accent-color));
-}
-
-/* animation for spinning logo */
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* apply logo spin animation for links */
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 /* add padding to card */
 .card {
   padding: 2em;
@@ -90,7 +55,7 @@ body {
 /* Add padding to the question container */
 .question-container {
   padding: 20px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 /* Add margin-top to the next button container */
@@ -102,8 +67,8 @@ body {
   padding: 20px; /* Adjust the padding as needed */
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  width: 400px;
+  margin: auto;
+  max-width: 400px;
   gap: 20px;
 }
 
@@ -169,9 +134,21 @@ input[type="radio"]:checked {
 }
 
 .answer {
-  display: inline-block;
-  margin: 0;
+  flex: 1 0 150px; 
+  min-width: 150px; 
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
+
+.answer:hover {
+  background-color: #86c2ae;
+  color: white;
+}
+
 
 .countdown {
   font-size: 100px;
@@ -193,9 +170,11 @@ input[type="radio"]:checked {
 }
 
 .answer-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
+  text-align: center; 
 }
 
 .instructions {
